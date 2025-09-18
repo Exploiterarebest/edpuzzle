@@ -6,60 +6,71 @@ javascript:(function() {
   let gui = document.createElement("div");
   gui.id = "bookmarklet-gui";
   gui.style.position = "fixed";
-  gui.style.top = "50px";
-  gui.style.right = "50px";
+  gui.style.top = "80px";
+  gui.style.right = "80px";
   gui.style.background = "black";
   gui.style.color = "red";
-  gui.style.padding = "30px";
-  gui.style.border = "4px solid red"; // thicker red border
-  gui.style.borderRadius = "20px"; // rounded corners
-  gui.style.fontSize = "22px"; // bigger text
+  gui.style.padding = "50px";
+  gui.style.border = "6px solid red"; 
+  gui.style.borderRadius = "30px"; 
+  gui.style.fontSize = "32px"; 
   gui.style.zIndex = "9999";
   gui.style.fontFamily = "Arial, sans-serif";
-  gui.style.minWidth = "300px"; // wider
+  gui.style.minWidth = "500px"; 
   gui.style.textAlign = "center";
-  gui.style.boxShadow = "0px 0px 25px rgba(255,0,0,0.8)"; // red glow
+  gui.style.boxShadow = "0px 0px 40px rgba(255,0,0,0.9)"; 
 
   // Title
   let title = document.createElement("div");
   title.textContent = "Bookmarklet GUI";
-  title.style.fontSize = "26px";
-  title.style.marginBottom = "20px";
+  title.style.fontSize = "40px";
+  title.style.marginBottom = "40px";
   title.style.fontWeight = "bold";
   gui.appendChild(title);
 
-  // Example button
-  let btn = document.createElement("button");
-  btn.textContent = "Click Me";
-  btn.style.background = "black";
-  btn.style.color = "red";
-  btn.style.border = "2px solid red";
-  btn.style.borderRadius = "10px";
-  btn.style.padding = "12px 20px";
-  btn.style.cursor = "pointer";
-  btn.style.fontSize = "20px";
-  btn.onmouseover = () => {
-    btn.style.background = "red";
-    btn.style.color = "black";
-  };
-  btn.onmouseout = () => {
+  // Function to style buttons
+  function makeButton(label, action) {
+    let btn = document.createElement("button");
+    btn.textContent = label;
     btn.style.background = "black";
     btn.style.color = "red";
-  };
-  btn.onclick = function() {
-    alert("Button clicked!");
-  };
-  gui.appendChild(btn);
+    btn.style.border = "3px solid red";
+    btn.style.borderRadius = "15px";
+    btn.style.padding = "20px 40px";
+    btn.style.cursor = "pointer";
+    btn.style.fontSize = "28px";
+    btn.style.margin = "15px";
+    btn.onmouseover = () => {
+      btn.style.background = "red";
+      btn.style.color = "black";
+    };
+    btn.onmouseout = () => {
+      btn.style.background = "black";
+      btn.style.color = "red";
+    };
+    btn.onclick = action;
+    return btn;
+  }
+
+  // First button
+  gui.appendChild(makeButton("Click Me", () => {
+    alert("First button clicked!");
+  }));
+
+  // Second button
+  gui.appendChild(makeButton("Second Button", () => {
+    alert("Second button clicked!");
+  }));
 
   // Close button
   let closeBtn = document.createElement("div");
   closeBtn.textContent = "✖";
   closeBtn.style.position = "absolute";
-  closeBtn.style.top = "10px";
-  closeBtn.style.right = "15px";
+  closeBtn.style.top = "15px";
+  closeBtn.style.right = "20px";
   closeBtn.style.cursor = "pointer";
   closeBtn.style.fontWeight = "bold";
-  closeBtn.style.fontSize = "20px";
+  closeBtn.style.fontSize = "28px";
   closeBtn.onclick = function() {
     gui.remove();
   };
