@@ -6,53 +6,60 @@ javascript:(function() {
   let gui = document.createElement("div");
   gui.id = "bookmarklet-gui";
   gui.style.position = "fixed";
-  gui.style.top = "50px";
-  gui.style.right = "50px";
-  gui.style.width = "250px";
-  gui.style.padding = "15px";
-  gui.style.background = "#fff";
-  gui.style.border = "2px solid #333";
-  gui.style.borderRadius = "8px";
-  gui.style.boxShadow = "0 4px 12px rgba(0,0,0,0.3)";
-  gui.style.zIndex = 99999;
+  gui.style.top = "20px";
+  gui.style.right = "20px";
+  gui.style.background = "black";
+  gui.style.color = "red";
+  gui.style.padding = "20px";
+  gui.style.border = "2px solid red";
+  gui.style.borderRadius = "15px"; // rounded corners
+  gui.style.fontSize = "18px";
+  gui.style.zIndex = "9999";
   gui.style.fontFamily = "Arial, sans-serif";
+  gui.style.minWidth = "220px";
+  gui.style.textAlign = "center";
+  gui.style.boxShadow = "0px 0px 15px rgba(255,0,0,0.6)";
 
-  // Add title
-  let title = document.createElement("h3");
-  title.textContent = "My Bookmarklet";
-  title.style.margin = "0 0 10px";
+  // Title
+  let title = document.createElement("div");
+  title.textContent = "Bookmarklet GUI";
+  title.style.fontSize = "22px";
+  title.style.marginBottom = "12px";
+  title.style.fontWeight = "bold";
   gui.appendChild(title);
 
-  // Add input
-  let input = document.createElement("input");
-  input.type = "text";
-  input.placeholder = "Type something...";
-  input.style.width = "100%";
-  input.style.marginBottom = "10px";
-  gui.appendChild(input);
-
-  // Add button
-  let button = document.createElement("button");
-  button.textContent = "Click Me";
-  button.style.width = "100%";
-  button.onclick = function() {
-    alert("You typed: " + input.value);
+  // Example button
+  let btn = document.createElement("button");
+  btn.textContent = "Click Me";
+  btn.style.background = "black";
+  btn.style.color = "red";
+  btn.style.border = "1px solid red";
+  btn.style.borderRadius = "8px";
+  btn.style.padding = "8px 15px";
+  btn.style.cursor = "pointer";
+  btn.onmouseover = () => btn.style.background = "red";
+  btn.onmouseover = () => btn.style.color = "black";
+  btn.onmouseout = () => {
+    btn.style.background = "black";
+    btn.style.color = "red";
   };
-  gui.appendChild(button);
+  btn.onclick = function() {
+    alert("Button clicked!");
+  };
+  gui.appendChild(btn);
 
-  // Add close button
-  let closeBtn = document.createElement("button");
+  // Close button
+  let closeBtn = document.createElement("div");
   closeBtn.textContent = "✖";
   closeBtn.style.position = "absolute";
   closeBtn.style.top = "5px";
-  closeBtn.style.right = "5px";
-  closeBtn.style.border = "none";
-  closeBtn.style.background = "transparent";
-  closeBtn.style.fontSize = "16px";
+  closeBtn.style.right = "10px";
   closeBtn.style.cursor = "pointer";
-  closeBtn.onclick = () => gui.remove();
+  closeBtn.style.fontWeight = "bold";
+  closeBtn.onclick = function() {
+    gui.remove();
+  };
   gui.appendChild(closeBtn);
 
-  // Add GUI to body
   document.body.appendChild(gui);
 })();
