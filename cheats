@@ -1,0 +1,58 @@
+javascript:(function() {
+  // If GUI already exists, don't add another one
+  if (document.getElementById("bookmarklet-gui")) return;
+
+  // Create container
+  let gui = document.createElement("div");
+  gui.id = "bookmarklet-gui";
+  gui.style.position = "fixed";
+  gui.style.top = "50px";
+  gui.style.right = "50px";
+  gui.style.width = "250px";
+  gui.style.padding = "15px";
+  gui.style.background = "#fff";
+  gui.style.border = "2px solid #333";
+  gui.style.borderRadius = "8px";
+  gui.style.boxShadow = "0 4px 12px rgba(0,0,0,0.3)";
+  gui.style.zIndex = 99999;
+  gui.style.fontFamily = "Arial, sans-serif";
+
+  // Add title
+  let title = document.createElement("h3");
+  title.textContent = "My Bookmarklet";
+  title.style.margin = "0 0 10px";
+  gui.appendChild(title);
+
+  // Add input
+  let input = document.createElement("input");
+  input.type = "text";
+  input.placeholder = "Type something...";
+  input.style.width = "100%";
+  input.style.marginBottom = "10px";
+  gui.appendChild(input);
+
+  // Add button
+  let button = document.createElement("button");
+  button.textContent = "Click Me";
+  button.style.width = "100%";
+  button.onclick = function() {
+    alert("You typed: " + input.value);
+  };
+  gui.appendChild(button);
+
+  // Add close button
+  let closeBtn = document.createElement("button");
+  closeBtn.textContent = "✖";
+  closeBtn.style.position = "absolute";
+  closeBtn.style.top = "5px";
+  closeBtn.style.right = "5px";
+  closeBtn.style.border = "none";
+  closeBtn.style.background = "transparent";
+  closeBtn.style.fontSize = "16px";
+  closeBtn.style.cursor = "pointer";
+  closeBtn.onclick = () => gui.remove();
+  gui.appendChild(closeBtn);
+
+  // Add GUI to body
+  document.body.appendChild(gui);
+})();
